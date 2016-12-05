@@ -16,6 +16,6 @@ import Data.List
 -- Always take the first row as is, then rotate the matrix counterclockwise (reverse . transpose OR transpose . reverse) and then recurse through a smaller matrix.
 unspiral :: [[a]] -> [a]
 unspiral [] = []
-unspiral (x : xs) = x ++ unspiral (reverse . transpose $ xs)
+unspiral (x : xs) = x ++ unspiral (transpose (map reverse xs))
 
 
