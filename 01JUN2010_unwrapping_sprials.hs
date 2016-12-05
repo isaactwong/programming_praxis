@@ -13,7 +13,7 @@ import Data.List
 -- Your task is to write a function to unwrap spirals. 
 
 
--- Always take the first row as is, then rotate the matrix counterclockwise (reverse . transpose OR transpose . reverse) and then recurse.
+-- Always take the first row as is, then rotate the matrix counterclockwise (reverse . transpose OR transpose . reverse) and then recurse through a smaller matrix.
 unspiral :: [[a]] -> [a]
 unspiral [] = []
 unspiral (x : xs) = x ++ unspiral (reverse . transpose $ xs)
