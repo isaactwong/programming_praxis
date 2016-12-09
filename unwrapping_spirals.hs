@@ -1,5 +1,6 @@
 import Data.List
 
+-- 01Jun2010
 -- The task is to enumerate the elements of a matrix in spiral order. For instance, consider the matrix:
 
 --  1  2  3  4
