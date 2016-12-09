@@ -1,5 +1,6 @@
 import Data.List
 
+-- 30Jun2009
 -- Steve Yegge is a programmer and popular blogger. One of his blog entries proposes these seven phone-screen coding exercises:
 
 -- Write a function to reverse a string.
