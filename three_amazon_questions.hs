@@ -1,6 +1,7 @@
 import Data.List
 import Data.Function 
 
+-- 25Nov2016
 -- Question 1
 -- A kidnapper wants to write a ransom note by cutting characters from the text of a magazine. Given two strings containing the characters of the ransom note and the characters of the magazine, write a program to determine if the ransom note can be formed from the magazine.
 
