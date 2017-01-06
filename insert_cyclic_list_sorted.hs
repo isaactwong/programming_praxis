@@ -29,3 +29,11 @@ takeF n (DLNode _ x next) = x : (takeF (n-1) next)
 takeR :: Integer -> DList a -> [a]
 takeR 0 _ = []
 takeR n (DLNode previous x _) = x : (takeR (n-1) previous)
+
+-- insertF :: a -> DList a -> DList a
+-- insertF x (DLNode prev a next) = if x <= a && x <= (peek next)
+                                    -- then (DLNode prev a
+                                 -- else insertF x next
+                                    
+peek :: DList a -> a
+peek (DLNode _ x _) = x
