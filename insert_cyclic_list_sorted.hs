@@ -30,10 +30,16 @@ takeR :: Integer -> DList a -> [a]
 takeR 0 _ = []
 takeR n (DLNode previous x _) = x : (takeR (n-1) previous)
 
--- insertF :: a -> DList a -> DList a
--- insertF x (DLNode prev a next) = if x <= a && x <= (peek next)
-                                    -- then (DLNode prev a
-                                 -- else insertF x next
-                                    
 peek :: DList a -> a
 peek (DLNode _ x _) = x
+
+{-
+Need to check a couple conditions when inserting x. Consider the interval [a,b]
+If we are inserting x and a <= x <= b
+Or x is bigger then everything in the list a<x and b<x
+Or x is smaller than everything in the list x<a and b>x.
+If none of these are true move right.
+
+How to insert the node in Haskell I still need to figure out!
+--}
+                                    
