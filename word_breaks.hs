@@ -14,23 +14,24 @@ He also gave a number of constraints: The dictionary provides a single operation
 -}
 
 -- this doesn't work...yet. straighten it out with better idiomatic monad chaining. and the types are messed.
-
 word_breaks :: String -> Maybe String
 word_breaks "" = Nothing
-word_breaks s = if Map.member s dict == True then Just s
-                else answer $ mapM (\x -> Just ((x++" ") ++) <*> (word_breaks (drop_prefix x s))) ns
-                where ns = catMaybes $ Data.List.map ((flip Map.lookup) dict) (inits s)
-                      drop_prefix x s = drop (length x) s
-
-
-
-answer :: [String] -> Maybe String
-answer [] = Nothing
-answer xs = return (head xs)
-
+word_breaks s = if Map.member s dict == True
+                   then Just s
+                   else do
+                             x <- Data.List.map ((flip Map.lookup) dict) (inits s)
+                             y <- word_breaks $ drop (length x) 
+                             (if x == Nothing || y == Nothing then Nothing else Just x ++ " " ++ y)
 
 dict :: Map.Map String String
 dict = Map.fromList [("a","a"), ("aa","aa"), ("aaa","aaa"), ("ab","ab"), ("apple","apple"), ("apricot","apricot"), ("is","is"), ("pie","pie"), ("test","test"), ("this","this")]
 
+{-
+                else answer $ mapM (\x -> Just ((x++" ") ++) <*> (word_breaks (drop_prefix x s))) ns
+                where ns = catMaybes $ Data.List.map ((flip Map.lookup) dict) (inits s)
+                      drop_prefix x s = drop (length x) s
 
-
+answer :: [String] -> Maybe String
+answer [] = Nothing
+answer xs = return (head xs)
+-}
