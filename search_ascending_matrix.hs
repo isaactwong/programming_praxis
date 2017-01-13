@@ -27,7 +27,7 @@ find_coordinates k xs = do
                                 (c, value) <- find in_column cs
                                 return (c,r)
                             where
-                                ms = zip [1..] $ map (zip [0..]) xs -- index the array (row, [(column, value)])
+                                ms = zip [1..] $ map (zip [1..]) xs -- index the array (row, [(column, value)])
                                 in_row (c,rs) = (head rs) <= k && k <= (last rs)
                                 in_column (i,x) = k == x
 
