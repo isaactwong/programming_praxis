@@ -1,3 +1,4 @@
+import Data.Array
 import Data.List
 
 {-
@@ -21,13 +22,15 @@ ys = [[1, 5,  7,  9],
      [8, 11, 12, 19],
      [4, 16, 18, 21]]
 
-find_coordinates :: (Ord a) => a -> [[a]] -> Maybe (Int, Int)
-find_coordinates k xs = do
-                                (r, cs) <- find in_row ms
-                                (c, value) <- find in_column cs
-                                return (c,r)
-                            where
-                                ms = zip [1..] $ map (zip [1..]) xs -- index the array (row, [(column, value)])
-                                in_row (c,rs) = (head rs) <= k && k <= (last rs)
-                                in_column (i,x) = k == x
+as = listArray ((0,0),(3,3)) [1,5,7,9,4,6,10,15,8,11,12,19,4,16,18,21]
 
+find_coordinates :: (Ord a) => a -> Array Int a -> Maybe (Int, Int)
+find_coordinates x m = find' 0 (snd (snd (bounds m))) m x
+find' i j m x
+      | i < 0 = Nothing
+      | j < 0 = Nothing
+      | i > (fst . snd . bounds $ m) = Nothing
+      | j > (snd . snd. bounds $ m)  = Nothing
+      | x == (m ! (i,j))             = Just (i,j)
+      | x < (m ! (i,j))              = find' i (j-1) m x
+      | x > (m ! (i,j))              = find' (i+1) j m x
