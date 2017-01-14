@@ -15,6 +15,8 @@ the key 11 appears in row 2, column 1 (indexing from 0) and the key 13 is not pr
 
 Your task is to write the requested search function. 
 
+Stole the solution from one of the comments in programming praxis. listArrays are very cool!
+
 -}
 
 ys = [[1, 5,  7,  9],
@@ -24,8 +26,8 @@ ys = [[1, 5,  7,  9],
 
 as = listArray ((0,0),(3,3)) [1,5,7,9,4,6,10,15,8,11,12,19,4,16,18,21]
 
-find_coordinates :: (Ord a) => a -> Array Int a -> Maybe (Int, Int)
-find_coordinates x m = find' 0 (snd (snd (bounds m))) m x
+find_coordinates :: (Ord a) => a -> Array (Int,Int) a -> Maybe (Int, Int)
+find_coordinates x m = find' 0 (snd . snd . bounds $ m) m x
 find' i j m x
       | i < 0 = Nothing
       | j < 0 = Nothing
